@@ -6,16 +6,16 @@ import sys
 # check if we are running python 3.x or python 2.x 
 if sys.version_info[0] >= 3:
     # for python 3.x
+    import configparser
     import tkinter as tk
     import tkinter.ttk as ttk
     from tkinter.colorchooser import askcolor
 else:
     # for python 2.x
+    import ConfigParser as configparser
     import Tkinter as tk
     import ttk
     from tkColorChooser import askcolor
-
-
 
 class MainApp(tk.Frame):
     
@@ -89,6 +89,15 @@ class ColorButton(tk.Frame):
         """
         return self._callbacks.pop(cbh, None)
 
+def parse_config_file(file_name):
+    # read config file
+    parser = configparser.ConfigParser()
+    parser.read(file_name)
+    print parser.sections()
+    ip = parser.get('bridge access', 'ip_address')
+    uname = parser.get('bridge access', 'username')
+    return ip, uname
+
 def print_color(color, btn=""):
     print("Button {} color is {}".format(btn, color[-1]))
         
@@ -97,6 +106,9 @@ def color_btn_program():
     """
     Function to encapsulate starting the Application
     """
+
+    ip, uname = parse_config_file('config')
+    print ip, uname
     
     root = tk.Tk()
     root.title("Color Changer Application") # Change the window title
