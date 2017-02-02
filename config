@@ -1,0 +1,5 @@
+# Edit ip_address and username for your system
+
+[bridge access]
+ip_address = 123.45.67.890
+username = abcd1234efgh5678ijkl90

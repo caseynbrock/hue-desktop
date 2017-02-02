@@ -17,6 +17,7 @@ else:
     import ttk
     from tkColorChooser import askcolor
 
+
 class MainApp(tk.Frame):
     
     def __init__(self, master):
